@@ -1,0 +1,13 @@
+#LogIn
+{
+    -fx-background-color: black;
+    -fx-text-fill: white;
+    -fx-font-size: 20;
+    -fx-background-radius: 15;
+    -fx-image: "Yandex_icon.svg.png";
+    -fx-content-display: left;
+}
+.Vbox
+{
+    -fx-background-color: blue;
+}

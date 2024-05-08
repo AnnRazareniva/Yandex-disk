@@ -6,48 +6,31 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.yandexdisk.HelloController">
-   <VBox prefHeight="57.0" prefWidth="514.0">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1000.0" prefWidth="1036.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.yandexdisk.Controller">
+   <Pane prefHeight="120.0" prefWidth="1020.0">
       <children>
-         <GridPane prefHeight="57.0" prefWidth="224.0">
-           <columnConstraints>
-             <ColumnConstraints hgrow="SOMETIMES" maxWidth="188.0" minWidth="10.0" prefWidth="173.0" />
-             <ColumnConstraints hgrow="SOMETIMES" maxWidth="507.0" minWidth="10.0" prefWidth="355.0" />
-           </columnConstraints>
-           <rowConstraints>
-             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-           </rowConstraints>
-            <children>
-               <Label alignment="TOP_LEFT" text="Яндекс ">
-                  <font>
-                     <Font name="System Bold" size="30.0" />
-                  </font>
-                  <graphic>
-                     <ImageView fitHeight="66.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                           <Image url="@../../../YandexDisk.png" />
-                        </image>
-                     </ImageView>
-                  </graphic>
-                  <GridPane.margin>
-                     <Insets />
-                  </GridPane.margin>
-               </Label>
-               <Label prefHeight="45.0" prefWidth="75.0" text="Диск" GridPane.columnIndex="1">
-                  <font>
-                     <Font size="30.0" />
-                  </font></Label>
-            </children>
-         </GridPane>
+         <Label alignment="TOP_LEFT" layoutX="14.0" layoutY="14.0" text="Яндекс ">
+            <font>
+               <Font name="System Bold" size="30.0" />
+            </font>
+            <graphic>
+               <ImageView fitHeight="66.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../../YandexDisk.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+         </Label>
+         <Label layoutX="187.0" layoutY="20.0" prefHeight="45.0" prefWidth="75.0" text="Диск">
+            <font>
+               <Font size="30.0" />
+            </font>
+         </Label>
       </children>
-      <VBox.margin>
-         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-      </VBox.margin></VBox>
-   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+   </Pane>
+   <VBox alignment="CENTER" prefHeight="425.0" prefWidth="1016.0">
       <children>
-          <Button fx:id="LogIn" alignment="CENTER" onAction="#onLogInButtonClick" text="Войти с Яндекс ID">
+          <Button fx:id="LogIn" alignment="CENTER" onAction="#OnLogInButtonClick" text="Войти с Яндекс ID">
             <graphic>
                <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                   <image>
@@ -70,11 +53,18 @@
                <Insets bottom="20.0" top="35.0" />
             </VBox.margin>
          </Label>
-         <TextField maxHeight="20.0" maxWidth="500.0" prefHeight="25.0" prefWidth="500.0" />
+         <TextField maxHeight="20.0" maxWidth="500.0" prefHeight="25.0" prefWidth="500.0">
+            <VBox.margin>
+               <Insets bottom="20.0" />
+            </VBox.margin></TextField>
+         <Button fx:id="Download" mnemonicParsing="false" prefHeight="40.0" prefWidth="110.0" text="Скачать" />
       </children>
       <padding>
-         <Insets bottom="30.0" top="150.0" />
+         <Insets bottom="30.0" />
       </padding>
+      <VBox.margin>
+         <Insets />
+      </VBox.margin>
    </VBox>
    <padding>
       <Insets left="20.0" top="20.0" />

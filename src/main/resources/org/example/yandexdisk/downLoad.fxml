@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="536.0" prefWidth="839.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.yandexdisk.Controller">
+   <Pane prefHeight="200.0" prefWidth="200.0">
+      <children>
+         <Label layoutX="169.0" layoutY="59.0" prefHeight="21.0" prefWidth="200.0" text="Или скачать файл по ссылке:" textFill="#707b91">
+            <font>
+               <Font size="15.0" />
+            </font>
+         </Label>
+         <ProgressBar layoutX="301.0" layoutY="100.0" prefWidth="200.0" progress="0.0" />
+      </children>
+   </Pane>
+   <padding>
+      <Insets top="20.0" />
+   </padding>
+</VBox>

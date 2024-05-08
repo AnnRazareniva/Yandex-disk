@@ -21,7 +21,11 @@ public class HelloApplication extends Application
         stage.setTitle("Яндекс-диск для Linux");
         stage.setScene(scene);
 
+        // TODO ограничение размера окна на стэйдж
+        // TODO
+
         stage.show();
+
     }
 
     public static void main(String[] args) {

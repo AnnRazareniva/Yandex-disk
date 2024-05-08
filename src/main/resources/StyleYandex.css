@@ -7,7 +7,26 @@
     -fx-image: "Yandex_icon.svg.png";
     -fx-content-display: left;
 }
-.Vbox
+
+#Upload
 {
     -fx-background-color: blue;
+    -fx-text-fill: white;
+    -fx-font-size: 20;
+    -fx-background-radius: 15;
+    -fx-content-display: left;
 }
+
+#Download
+{
+    -fx-background-color: blue;
+    -fx-text-fill: white;
+    -fx-font-size: 20;
+    -fx-background-radius: 15;
+    -fx-content-display: left;
+}
+
+/*.Vbox*/
+/*{*/
+/*    -fx-background-color: blue;*/
+/*}*/

@@ -14,6 +14,14 @@
         <junit.version>5.10.0</junit.version>
     </properties>
 
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>YandexDiskClientLib</name>
+            <url>https://maven.pkg.github.com/madbadrat/yandex-disk-api-client-lib</url>
+        </repository>
+    </distributionManagement>
+
     <dependencies>
         <dependency>
             <groupId>org.openjfx</groupId>
@@ -110,6 +118,11 @@
             <artifactId>junit-jupiter-engine</artifactId>
             <version>${junit.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>ru.vorotov.yandex_disk_api_client_lib</groupId>
+            <artifactId>yandex-disk-api-client-lib</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

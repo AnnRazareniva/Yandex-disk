@@ -11,6 +11,8 @@ module org.example.yandexdisk {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
 
+    requires yandex.disk.api.client.lib;
+
     opens org.example.yandexdisk to javafx.fxml;
     exports org.example.yandexdisk;
 }

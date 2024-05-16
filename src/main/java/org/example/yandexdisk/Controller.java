@@ -4,6 +4,7 @@ import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -12,7 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import ru.vorotov.yandex_disk_api_client_lib.YandexDiskClient;
-import javafx.fxml.Initializable;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -32,7 +33,7 @@ public class Controller implements Initializable
     @FXML
     private TextField linkField;
 
-    private volatile boolean isCancelled = false;
+    private final boolean isCancelled = false;
 
     YandexDiskClient client;
 
@@ -69,7 +70,7 @@ public class Controller implements Initializable
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("Выберите папку");
 
-        Stage stage =(Stage) directoryPathLabel.getScene().getWindow();
+        Stage stage = (Stage) directoryPathLabel.getScene().getWindow();
         File selectedDirectory = directoryChooser.showDialog(stage);
         if (selectedDirectory!=null)
         {

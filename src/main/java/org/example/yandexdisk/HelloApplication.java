@@ -21,6 +21,9 @@ public class HelloApplication extends Application
         stage.setTitle("Яндекс-диск для Linux");
         stage.setScene(scene);
 
+        stage.setMinWidth(980);
+        stage.setMinHeight(720);
+
         // TODO ограничение размера окна на стэйдж
         // TODO
 

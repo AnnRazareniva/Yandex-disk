@@ -119,11 +119,15 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <!--От Славы версии обновлять-->
         <dependency>
             <groupId>ru.vorotov.yandex_disk_api_client_lib</groupId>
             <artifactId>yandex-disk-api-client-lib</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.4-SNAPSHOT</version>
         </dependency>
+
+
     </dependencies>
 
     <build>
@@ -137,6 +141,7 @@
                     <target>21</target>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
@@ -157,6 +162,7 @@
                     </execution>
                 </executions>
             </plugin>
+
         </plugins>
     </build>
 </project>

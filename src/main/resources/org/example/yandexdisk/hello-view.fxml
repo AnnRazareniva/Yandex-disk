@@ -55,7 +55,8 @@
                <Insets bottom="20.0" top="35.0" />
             </VBox.margin>
          </Label>
-         <TextField fx:id="linkField" maxHeight="20.0" maxWidth="500.0" prefHeight="25.0" prefWidth="500.0">
+         <TextField fx:id="linkField" maxHeight="20.0" maxWidth="500.0" prefHeight="25.0" prefWidth="500.0"
+                    text="Введите ссылку на файл">
             <VBox.margin>
                <Insets bottom="20.0" />
             </VBox.margin></TextField>

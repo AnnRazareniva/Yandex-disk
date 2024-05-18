@@ -25,22 +25,22 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable
 {
-    String fileLink;
     @FXML
     private Label directoryPathLabel, errorDirectoryLabel, fileSize, fileName;
-
-
     @FXML
     private ProgressBar FileProgressBar;
-
     @FXML
     private TextField linkField;
     @FXML
     private Button DownloadFile, chooseDirectory;
 
+
     private final boolean isCancelled = false;
 
     YandexDiskClient client;
+
+    String fileLink;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
@@ -54,6 +54,7 @@ public class Controller implements Initializable
         Stage stageLoggedIn = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("loggedIn-view.fxml"));
+        fxmlLoader.setController(this);
         Scene mainScene = new Scene(fxmlLoader.load(), 980, 720);
         mainScene.getStylesheets().add("/StyleYandex.css");
 
@@ -74,6 +75,7 @@ public class Controller implements Initializable
     {
         Stage stageUpload = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("download.fxml"));
+        fxmlLoader.setController(this);
         Scene downloadingFile = new Scene(fxmlLoader.load(), 720, 360);
         downloadingFile.getStylesheets().add("/StyleYandex.css");
 
@@ -90,6 +92,7 @@ public class Controller implements Initializable
     {
         Stage stageDownload = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("download.fxml"));
+        fxmlLoader.setController(this);
         Scene downloadingFile = new Scene(fxmlLoader.load(), 460, 200);
         downloadingFile.getStylesheets().add("/StyleYandex.css");
 
@@ -106,18 +109,23 @@ public class Controller implements Initializable
 
     @FXML
     protected void OnDownloadFileButtonClick(ActionEvent actionEvent) throws java.io.IOException {
-        if (directoryPathLabel.getText().equals("Путь к папке") && fileLink == null) {
-            errorDirectoryLabel.setVisible(true);
-        } else {
-//        fileLink = "https://disk.yandex.ru/i/6NNFt6dVJlwqtQ";
-            Task<Void> downloadTask = new Task<Void>() {
+//        fileLink = linkField.getText();
+        System.out.println(fileLink);
+
+
+        //      fileLink = "https://disk.yandex.ru/i/6NNFt6dVJlwqtQ";
+        Task<Void> downloadTask = new Task<Void>() {
+
                 @Override
                 protected Void call() throws Exception {
+//                    String fileLink = linkField.getText();
+
+
                     InputStream in = client.download(fileLink);
                     int fileSizeF = client.getFileSize(fileLink);
 
                     String filename = directoryPathLabel.getText() + "/" + client.getFileName(fileLink);
-
+                    System.out.println(filename);
                     try (FileOutputStream outputStream = new FileOutputStream(filename)) {
                         byte[] buffer = new byte[1024];
                         int bytesRead;
@@ -145,7 +153,6 @@ public class Controller implements Initializable
 
             Thread downloadThread = new Thread(downloadTask);
             downloadThread.start();
-        }
     }
 
     @FXML

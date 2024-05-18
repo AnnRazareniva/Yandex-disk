@@ -1,19 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.*?>
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="420.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.yandexdisk.Controller">
    <Pane prefHeight="176.0" prefWidth="420.0">
       <children>
-         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="110.0" layoutY="58.0" prefHeight="21.0" prefWidth="200.0" text="Или скачать файл по ссылке:" textFill="#707b91">
+         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="12.0" layoutY="14.0" prefHeight="20.0"
+                prefWidth="105.0" text="Скачивание">
+            <font>
+               <Font size="15.0"/>
+            </font>
+         </Label>
+         <Label fx:id="fileName" ellipsisString="2" layoutX="113.0" layoutY="14.0" prefHeight="17.0" prefWidth="95.0"
+                text="ИмяФайла" textFill="#0077ff" textOverrun="CLIP">
+            <font>
+               <Font size="15.0"/>
+            </font>
+         </Label>
+         <Label fx:id="fileSize" layoutX="26.0" layoutY="54.0" text="Размер файла">
+            <font>
+               <Font size="15.0"/>
+            </font>
+         </Label>
+         <Button fx:id="DownloadFile" layoutX="253.0" layoutY="46.0" mnemonicParsing="false"
+                 onAction="#OnDownloadFileButtonClick" prefHeight="35.0" prefWidth="125.0" text="Скачать"/>
+         <Button fx:id="chooseDirectory" layoutX="234.0" layoutY="96.0" mnemonicParsing="false"
+                 onAction="#OnChooseDirectoryButtonClick" prefHeight="35.0" prefWidth="163.0" text="Выбор папки"/>
+         <Label layoutX="26.0" layoutY="130.0"/>
+         <Label fx:id="directoryPathLabel" layoutX="30.0" layoutY="103.0" text="Путь к папке">
+            <font>
+               <Font size="15.0"/>
+            </font>
+         </Label>
+         <Label fx:id="errorDirectoryLabel" layoutX="70.0" layoutY="147.0" text="Сначала выберите папку куда скачивать"
+                textFill="RED">
             <font>
                <Font size="15.0" />
             </font>
          </Label>
-         <ProgressBar fx:id="FileProgressBar" layoutX="110.0" layoutY="101.0" prefWidth="200.0" progress="0.0" />
       </children>
    </Pane>
    <padding>

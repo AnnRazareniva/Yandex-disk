@@ -12,6 +12,7 @@ module org.example.yandexdisk {
     requires com.almasb.fxgl.all;
 
     requires yandex.disk.api.client.lib;
+    requires java.desktop;
 
     opens org.example.yandexdisk to javafx.fxml;
     exports org.example.yandexdisk;

@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
@@ -24,14 +25,18 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable
 {
+    String fileLink;
     @FXML
-    private Label directoryPathLabel;
+    private Label directoryPathLabel, errorDirectoryLabel, fileSize, fileName;
+
 
     @FXML
     private ProgressBar FileProgressBar;
 
     @FXML
     private TextField linkField;
+    @FXML
+    private Button DownloadFile, chooseDirectory;
 
     private final boolean isCancelled = false;
 
@@ -67,17 +72,6 @@ public class Controller implements Initializable
     @FXML
     protected void OnUploadButtonClick(ActionEvent actionEvent) throws java. io.IOException
     {
-        DirectoryChooser directoryChooser = new DirectoryChooser();
-        directoryChooser.setTitle("Выберите папку");
-
-        Stage stage = (Stage) directoryPathLabel.getScene().getWindow();
-        File selectedDirectory = directoryChooser.showDialog(stage);
-        if (selectedDirectory!=null)
-        {
-            directoryPathLabel.setText(selectedDirectory.getAbsolutePath());
-        }
-
-
         Stage stageUpload = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("download.fxml"));
         Scene downloadingFile = new Scene(fxmlLoader.load(), 720, 360);
@@ -94,78 +88,84 @@ public class Controller implements Initializable
     @FXML
     protected void OnDownloadButtonClick(ActionEvent actionEvent) throws java. io.IOException
     {
-        String fileLink;
-        fileLink = "https://disk.yandex.ru/i/6NNFt6dVJlwqtQ";
-
-
         Stage stageDownload = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("download.fxml"));
-        Scene downloadingFile = new Scene(fxmlLoader.load(), 420, 200);
+        Scene downloadingFile = new Scene(fxmlLoader.load(), 460, 200);
         downloadingFile.getStylesheets().add("/StyleYandex.css");
 
-        stageDownload.setTitle("");
+        stageDownload.setTitle("Окно скачивания");
         stageDownload.setScene(downloadingFile);
 
+        stageDownload.setMinWidth(460);
+        stageDownload.setMinHeight(200);
+        fileLink = linkField.getText();
+        System.out.println(fileLink);
         stageDownload.show();
-
-        Task<Void> downloadTask = new Task<Void>()
-        {
-            @Override
-            protected Void call() throws Exception
-            {
-                InputStream in = client.download(fileLink);
-                int fileSize = client.getFileSize(fileLink);
-
-                String filename = directoryPathLabel.getText()+"/"+ client.getFileName(fileLink);
-
-                try (FileOutputStream outputStream = new FileOutputStream(filename))
-                {
-                    byte[] buffer = new byte[1024];
-                    int bytesRead;
-                    int totalBytesRead =0;
-
-                    while ((bytesRead = in.read(buffer))!=-1)
-                    {
-                        if (isCancelled)
-                        {
-                            client.cancelDownload(in);
-                            break;
-                        }
-
-                        outputStream.write(buffer,0,bytesRead);
-                        totalBytesRead+=bytesRead;
-                        //double progress = (double) totalBytesRead /fileSize*100;
-
-                        double progress = (double) totalBytesRead /fileSize;
-
-                        FileProgressBar.setProgress(progress);
-
-                        //System.out.println("Прогресс загрузки: "+ progress + " %");
-                    }
-                }
-                catch (IOException e)
-                {
-                    throw new RuntimeException(e);
-                }
-
-                return null;
-            }
-        };
-
-        Thread downloadThread = new Thread(downloadTask);
-        downloadThread.start();
-
-        DirectoryChooser directoryChooser = new DirectoryChooser();
-        directoryChooser.setTitle("Выберите папку");
-
-        Stage stage =(Stage) directoryPathLabel.getScene().getWindow();
-        File selectedDirectory = directoryChooser.showDialog(stage);
-        if (selectedDirectory!=null)
-        {
-            directoryPathLabel.setText(selectedDirectory.getAbsolutePath());
-        }
 
     }
 
+    @FXML
+    protected void OnDownloadFileButtonClick(ActionEvent actionEvent) throws java.io.IOException {
+        if (directoryPathLabel.getText().equals("Путь к папке") && fileLink == null) {
+            errorDirectoryLabel.setVisible(true);
+        } else {
+//        fileLink = "https://disk.yandex.ru/i/6NNFt6dVJlwqtQ";
+            Task<Void> downloadTask = new Task<Void>() {
+                @Override
+                protected Void call() throws Exception {
+                    InputStream in = client.download(fileLink);
+                    int fileSizeF = client.getFileSize(fileLink);
+
+                    String filename = directoryPathLabel.getText() + "/" + client.getFileName(fileLink);
+
+                    try (FileOutputStream outputStream = new FileOutputStream(filename)) {
+                        byte[] buffer = new byte[1024];
+                        int bytesRead;
+                        int totalBytesRead = 0;
+
+                        while ((bytesRead = in.read(buffer)) != -1) {
+                            if (isCancelled) {
+                                client.cancelDownload(in);
+                                break;
+                            }
+
+                            outputStream.write(buffer, 0, bytesRead);
+                            totalBytesRead += bytesRead;
+                            double progress = (double) totalBytesRead / fileSizeF * 100;
+
+                            System.out.println("Прогресс загрузки: " + progress + " %");
+                        }
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                    return null;
+                }
+            };
+
+            Thread downloadThread = new Thread(downloadTask);
+            downloadThread.start();
+        }
+    }
+
+    @FXML
+    protected void OnChooseDirectoryButtonClick(ActionEvent actionEvent) throws IOException {
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Выберите папку");
+
+        Stage stage = (Stage) directoryPathLabel.getScene().getWindow();
+        File selectedDirectory = directoryChooser.showDialog(stage);
+        if (selectedDirectory!=null)
+        {
+            DownloadFile.setStyle("visibility: true;");
+
+            chooseDirectory.setStyle("-fx-background-color: #f4f4f4; -fx-text-fill: blue;");
+            directoryPathLabel.setVisible(true);
+            directoryPathLabel.setText(selectedDirectory.getAbsolutePath());
+
+//            fileSize.setText(String.valueOf(client.getFileSize(linkField.getText())));
+//            fileName.setText(client.getFileName(linkField.getText()));
+        }
+    }
 
 }

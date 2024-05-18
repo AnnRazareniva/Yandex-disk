@@ -26,6 +26,28 @@
     -fx-content-display: left;
 }
 
+#chooseDirectory {
+    -fx-background-color: blue;
+    -fx-text-fill: white;
+    -fx-font-size: 20;
+    -fx-background-radius: 15;
+    -fx-content-display: left;
+}
+
+#DownloadFile {
+    visibility: false;
+    -fx-background-color: blue;
+    -fx-text-fill: white;
+    -fx-font-size: 20;
+    -fx-background-radius: 15;
+    -fx-content-display: left;
+}
+
+#errorDirectoryLabel {
+    visibility: false;
+}
+
+
 /*.Vbox*/
 /*{*/
 /*    -fx-background-color: blue;*/

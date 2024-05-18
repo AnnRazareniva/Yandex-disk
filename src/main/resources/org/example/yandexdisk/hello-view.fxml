@@ -2,11 +2,13 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1000.0" prefWidth="1036.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.yandexdisk.Controller">
+<?import javafx.scene.text.Font?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="720.0"
+      prefWidth="980.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+      fx:controller="org.example.yandexdisk.Controller">
    <Pane prefHeight="120.0" prefWidth="1020.0">
       <children>
          <Label alignment="TOP_LEFT" layoutX="14.0" layoutY="14.0" text="Яндекс ">
@@ -53,7 +55,7 @@
                <Insets bottom="20.0" top="35.0" />
             </VBox.margin>
          </Label>
-         <TextField maxHeight="20.0" maxWidth="500.0" prefHeight="25.0" prefWidth="500.0">
+         <TextField fx:id="linkField" maxHeight="20.0" maxWidth="500.0" prefHeight="25.0" prefWidth="500.0">
             <VBox.margin>
                <Insets bottom="20.0" />
             </VBox.margin></TextField>
